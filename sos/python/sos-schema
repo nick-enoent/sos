@@ -83,7 +83,7 @@ def query_schema(cont, schema_name, verbose=False):
                         if comma:
                             aname += '+'
                         comma = True
-                        aname += str(jattr.name())
+                        aname += jattr.name()
                     aname += ']'
                 print("{0:4} {1:16} {2} {3}".\
                       format(a.attr_id(), type_name,

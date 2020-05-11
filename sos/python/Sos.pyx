@@ -420,7 +420,7 @@ cdef class Partition(SosObject):
 
     def name(self):
         """Returns the partition name"""
-        return sos_part_name(self.c_part)
+        return sos_part_name(self.c_part).decode('utf-8')
 
     def path(self):
         """Returns the partition path"""
@@ -3413,7 +3413,7 @@ cdef class Index(object):
 
     def name(self):
         """Return the name of the index"""
-        return sos_index_name(self.c_index)
+        return sos_index_name(self.c_index).decode('utf-8')
 
     def stats(self):
         """Return a dictionary of index statistics as follows:
@@ -3652,9 +3652,7 @@ cdef set_INT16_ARRAY(sos_attr_t c_attr, sos_value_data_t c_data, val):
         c_data.array.data.int16_[i] = val[i]
 
 cdef set_CHAR_ARRAY(sos_attr_t c_attr, sos_value_data_t c_data, val):
-    #cdef char *s
     cdef int i, sz
-    #s = val
     s = val.encode()
     sz = len(s)
     c_data.array.count = sz
@@ -4512,7 +4510,7 @@ cdef void uint8_array_nda_setter(np.ndarray nda, int idx, sos_value_t v):
         ndb[i] = v.data.array.data.byte_[i]
 
 cdef void int8_array_nda_setter(np.ndarray nda, int idx, sos_value_t v):
-    nda[idx] = str(v.data.array.data.char_[:v.data.array.count])
+    nda[idx] = v.data.array.data.char_[:v.data.array.count].decode()
 
 cdef void int16_array_nda_setter(np.ndarray nda, int idx, sos_value_t v):
     cdef int i

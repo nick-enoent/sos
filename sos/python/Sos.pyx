@@ -5403,7 +5403,7 @@ cdef class QueryInputer:
         pdres = {}
         df_idx = None
         for attr_idx in range(0, nattr):
-            col_name = sos_attr_name(res_acc[attr_idx].attr)
+            col_name = sos_attr_name(res_acc[attr_idx].attr).decode()
             pdres[col_name] = result[attr_idx]
             if index == col_name:
                 df_idx = pd.DatetimeIndex(result[attr_idx])

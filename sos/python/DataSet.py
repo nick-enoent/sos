@@ -343,7 +343,9 @@ class DataSet(object):
             for col in range(0, self.series_count):
                 v = self.array_with_series_idx[col][row_no]
                 typ = type(v)
-                if typ == np.ndarray or typ == np.string_:
+                if typ.__module__ == 'builtins':
+                    pass
+                elif typ == np.ndarray or typ == np.string_:
                     v = str(v)
                 elif typ == np.float32 or typ == np.float64:
                     v = float(v)

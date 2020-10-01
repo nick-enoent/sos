@@ -29,7 +29,7 @@ Compile Dependencies
 
 * For SOS python interface:
   * Cython
-  * Python >= 2.7
+  * Python >= 3
 
 Installation
 ------------
